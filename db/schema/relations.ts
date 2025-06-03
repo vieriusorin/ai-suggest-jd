@@ -5,9 +5,9 @@ import { jobDescriptions } from './job-descriptions';
 import { matchingResults } from './matching-results';
 import { candidateJobMatches } from './candidate-job-matches';
 import { aiFeedback } from './ai-feedback';
+import { userProfiles } from './users-profiles';
 
 export const internalGradesRelations = relations(internalGrades, ({ many }) => ({
-  // Use specific relation names for each type of relation
   currentGradeCandidates: many(candidates, { relationName: 'currentGrade' }),
   targetGradeCandidates: many(candidates, { relationName: 'targetGrade' }),
   jobDescriptions: many(jobDescriptions),
@@ -38,6 +38,10 @@ export const jobDescriptionsRelations = relations(jobDescriptions, ({ one, many 
   candidateMatches: many(candidateJobMatches),
 }));
 
+export const userProfilesRelations = relations(userProfiles, ({ many }) => ({
+  candidateMatches: many(candidateJobMatches),
+}));
+
 export const matchingResultsRelations = relations(matchingResults, ({ one, many }) => ({
   jobDescription: one(jobDescriptions, {
     fields: [matchingResults.jobDescriptionId],
@@ -58,6 +62,10 @@ export const candidateJobMatchesRelations = relations(candidateJobMatches, ({ on
   jobDescription: one(jobDescriptions, {
     fields: [candidateJobMatches.jobDescriptionId],
     references: [jobDescriptions.id],
+  }),
+  userProfile: one(userProfiles, {
+    fields: [candidateJobMatches.userId],
+    references: [userProfiles.userId],
   }),
 }));
 

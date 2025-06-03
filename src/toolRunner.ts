@@ -1,5 +1,5 @@
 import type OpenAI from "openai";
-// TODO: Add tools here
+import { candidateSearchToolDefinition, getCandidateSearchTool } from "./tools/candidateSearch";
 
 /**
  * 
@@ -17,6 +17,8 @@ export const runTool = async (toolCall: OpenAI.Chat.Completions.ChatCompletionMe
 	};
 
 	switch (toolCall.function.name) {
+		case candidateSearchToolDefinition.name:
+			return getCandidateSearchTool(input);
 
 		default:
 			return `Never run this tool: ${toolCall.function.name} again, or else!`;

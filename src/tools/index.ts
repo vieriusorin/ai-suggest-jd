@@ -1,1 +1,3 @@
-export const tools = [];
+import { candidateSearchToolDefinition } from "./candidateSearch";
+
+export const tools = [candidateSearchToolDefinition];

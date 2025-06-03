@@ -1,5 +1,6 @@
 import { pgTable, serial, integer, varchar, text, decimal, timestamp, index, foreignKey } from 'drizzle-orm/pg-core';
 import { internalGrades } from './internal-grades';
+import { vector } from '../vector';
 
 export const candidates = pgTable('candidates', {
   id: serial('id').primaryKey(),
@@ -21,12 +22,28 @@ export const candidates = pgTable('candidates', {
   salaryExpectation: integer('salary_expectation'),
   location: varchar('location', { length: 200 }),
   remotePreference: varchar('remote_preference', { length: 50 }),
+  
+  // Vector embeddings for semantic matching
+  profileEmbedding: vector('profile_embedding', { dimensions: 1536 }),
+  skillsEmbedding: vector('skills_embedding', { dimensions: 1536 }),
+  experienceEmbedding: vector('experience_embedding', { dimensions: 1536 }),
+  resumeEmbedding: vector('resume_embedding', { dimensions: 1536 }),
+  
   createdAt: timestamp('created_at').defaultNow().notNull(),
   updatedAt: timestamp('updated_at').defaultNow().notNull(),
 }, (table) => ({
   experienceIdx: index('idx_candidates_experience').on(table.yearsExperience),
   skillsIdx: index('idx_candidates_skills').on(table.skills),
   gradeLevelIdx: index('idx_candidates_grade_level').on(table.currentGradeLevel),
+  
+  // HNSW indexes for fast vector similarity search
+  profileEmbeddingIdx: index('idx_candidates_profile_embedding')
+    .using('hnsw', table.profileEmbedding.asc().op('vector_cosine_ops')),
+  skillsEmbeddingIdx: index('idx_candidates_skills_embedding')
+    .using('hnsw', table.skillsEmbedding.asc().op('vector_cosine_ops')),
+  resumeEmbeddingIdx: index('idx_candidates_resume_embedding')
+    .using('hnsw', table.resumeEmbedding.asc().op('vector_cosine_ops')),
+  
   currentGradeFk: foreignKey({
     columns: [table.currentGradeLevel],
     foreignColumns: [internalGrades.levelNumber],
