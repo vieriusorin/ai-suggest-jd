@@ -1,6 +1,6 @@
 import ora from "ora";
 import type { AIMessage } from "../types";
-import { pdfParseToolDefinition } from "./tools/pdf-parse";
+// import { candidateSearchToolDefinition } from "./tools/candidateSearch";
 
 export const showLoader = (text: string) => {
 	const spinner = ora({
@@ -49,9 +49,9 @@ export const logMessage = (message: AIMessage) => {
 				console.log(`\n${color}[ASSISTANT]${reset}`);
 				console.log(`${tool.function.name}\n`);
 
-				if (tool.function.name === pdfParseToolDefinition.name) {
-					console.log("\nDo you approve scanning the pdf? (yes/no)\n");
-				}
+				// if (tool.function.name === candidateSearchToolDefinition.name) {
+				// 	console.log("\nDo you approve scanning the pdf? (yes/no)\n");
+				// }
 			}
 			return;
 		}

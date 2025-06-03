@@ -1,5 +1,5 @@
 {
-	"name": "pdf-parser",
+	"name": "ai-powered-candidate-matching-tool",
 	"module": "index.ts",
 	"type": "module",
 	"version": "1.0.0",
@@ -19,9 +19,14 @@
 		"db:studio": "drizzle-kit studio",
 		"db:introspect": "drizzle-kit introspect:pg",
 		"db:migrate": "drizzle-kit migrate --config=drizzle.config.ts",
-		"db:seed": "tsx ./db/seed.ts",
+		"db:seed": "tsx ./db/enhanced-seed.ts",
 		"db:reset": "tsx ./db/reset.ts",
-		"db:test-connection": "tsx ./db/test-connection.ts"
+		"db:test-connection": "tsx ./db/test-connection.ts",
+		"docker:up": "docker-compose up -d",
+		"docker:down": "docker-compose down",
+		"docker:logs": "docker-compose logs -f postgres",
+		"test:vectors": "tsx src/utils/test-vectors.ts",
+		"analyze:matches": "tsx src/scripts/analyze-matches.ts"
 	},
 	"dependencies": {
 		"@biomejs/cli-win32-x64": "^1.9.4",
@@ -48,5 +53,8 @@
 	"devDependencies": {
 		"@biomejs/biome": "^1.9.4",
 		"@types/pg": "^8.15.4"
+	},
+	"engines": {
+		"node": ">=18.0.0"
 	}
 }

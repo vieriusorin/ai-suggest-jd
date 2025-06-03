@@ -7,7 +7,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // Your database connection string
-const DATABASE_URL='postgresql://admin:password123@localhost:5432/job_matching'
+const DATABASE_URL='postgresql://admin:admin@localhost:5433/job_matching'
 
 async function resetDatabase() {
   console.log('🔄 Starting database reset process...');
