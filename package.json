@@ -1,0 +1,52 @@
+{
+	"name": "pdf-parser",
+	"module": "index.ts",
+	"type": "module",
+	"version": "1.0.0",
+	"description": "",
+	"license": "ISC",
+	"author": "",
+	"main": "index.js",
+	"scripts": {
+		"start": "npx tsx index.ts",
+		"lint": "biome check .",
+		"format": "biome format --write .",
+		"lint:fix": "biome check --apply .",
+		"check": "biome check --write .",
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"db:push": "drizzle-kit push --config=drizzle.config.ts",
+		"db:generate": "drizzle-kit generate --config=drizzle.config.ts",
+		"db:studio": "drizzle-kit studio",
+		"db:introspect": "drizzle-kit introspect:pg",
+		"db:migrate": "drizzle-kit migrate --config=drizzle.config.ts",
+		"db:seed": "tsx ./db/seed.ts",
+		"db:reset": "tsx ./db/reset.ts",
+		"db:test-connection": "tsx ./db/test-connection.ts"
+	},
+	"dependencies": {
+		"@biomejs/cli-win32-x64": "^1.9.4",
+		"@upstash/vector": "^1.1.7",
+		"autoevals": "^0.0.101",
+		"chalk": "^5.3.0",
+		"decode-uri-component": "^0.4.1",
+		"dotenv": "^16.5.0",
+		"drizzle-kit": "^0.31.1",
+		"drizzle-orm": "^0.44.1",
+		"drizzle-zod": "^0.8.2",
+		"express": "^5.1.0",
+		"got": "^14.4.4",
+		"lowdb": "^7.0.1",
+		"openai": "^4.70.3",
+		"ora": "^8.1.1",
+		"pg": "^8.16.0",
+		"pgvector": "^0.2.1",
+		"terminal-image": "^3.0.0",
+		"tsx": "^4.19.2",
+		"uuid": "^11.0.2",
+		"zod": "^3.23.8"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "^1.9.4",
+		"@types/pg": "^8.15.4"
+	}
+}
