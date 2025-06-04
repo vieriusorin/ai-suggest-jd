@@ -1,5 +1,5 @@
 import { zodFunction } from "openai/helpers/zod";
-import type { AIMessage } from "../types";
+import type { AIMessage } from "./types";
 import { openai } from "./ai";
 
 import { systemPrompt as defaultSystemPrompt } from "./systemPrompt";

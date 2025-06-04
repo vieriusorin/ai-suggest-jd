@@ -1,6 +1,6 @@
 import { JSONFilePreset } from "lowdb/node";
 import { v4 as uuidv4 } from "uuid";
-import type { AIMessage } from "../types";
+import type { AIMessage } from "./types";
 
 export type MessageWithMetadata = AIMessage & {
 	id: string;

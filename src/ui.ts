@@ -1,6 +1,5 @@
 import ora from "ora";
-import type { AIMessage } from "../types";
-// import { candidateSearchToolDefinition } from "./tools/candidateSearch";
+import type { AIMessage } from "./types";
 
 export const showLoader = (text: string) => {
 	const spinner = ora({
@@ -48,10 +47,6 @@ export const logMessage = (message: AIMessage) => {
 			for (const tool of message.tool_calls) {
 				console.log(`\n${color}[ASSISTANT]${reset}`);
 				console.log(`${tool.function.name}\n`);
-
-				// if (tool.function.name === candidateSearchToolDefinition.name) {
-				// 	console.log("\nDo you approve scanning the pdf? (yes/no)\n");
-				// }
 			}
 			return;
 		}
