@@ -1,3 +1,3 @@
-import { candidateSearchToolDefinition } from "./candidateSearch";
+import { getAvailableTools } from '../toolRunner';
 
-export const tools = [candidateSearchToolDefinition];
+export const tools = getAvailableTools();
