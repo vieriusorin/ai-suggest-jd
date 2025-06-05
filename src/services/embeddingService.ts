@@ -15,13 +15,13 @@ interface EnhancedEmbeddingResult {
 
 export class EmbeddingService {
   /**
-   * Generate embeddings for text using OpenAI's text-embedding-ada-002 model
+   * Generate embeddings for text using OpenAI's text-embedding-3-small model
    * This matches the 1536-dimensional vectors used in your candidates table
    */
   static async generateEmbedding(text: string): Promise<number[]> {
     try {
       const response = await openai.embeddings.create({
-        model: 'text-embedding-ada-002',
+        model: 'text-embedding-3-small',
         input: text.trim(),
       });
 

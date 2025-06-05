@@ -26,7 +26,7 @@ export interface JobEmbeddings {
   skillsEmbedding: number[];
 }
 
-// Generate embeddings using OpenAI's text-embedding-ada-002 model
+// Generate embeddings using OpenAI's text-embedding-3-small model
 export async function generateEmbedding(text: string): Promise<EmbeddingResult> {
   try {
     if (!process.env.OPENAI_API_KEY || process.env.OPENAI_API_KEY === 'your-api-key-here') {
@@ -40,7 +40,7 @@ export async function generateEmbedding(text: string): Promise<EmbeddingResult> 
     }
 
     const response = await openai.embeddings.create({
-      model: 'text-embedding-ada-002',
+      model: 'text-embedding-3-small',
       input: text,
     });
 
