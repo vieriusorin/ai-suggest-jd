@@ -54,7 +54,8 @@
 	},
 	"devDependencies": {
 		"@biomejs/biome": "^1.9.4",
-		"@types/pg": "^8.15.4"
+		"@types/pg": "^8.15.4",
+		"release-please": "^17.0.0"
 	},
 	"engines": {
 		"node": ">=18.0.0"
