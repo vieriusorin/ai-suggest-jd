@@ -58,12 +58,12 @@ export const getCandidateSearchTool = async ({
       const matchScorePercent = Math.round(candidate.matchScore * 100);
       
       return `${index + 1}. **${candidate.name}**
-📧 ${candidate.email}
-💼 ${candidate.currentTitle} at ${candidate.currentCompany}
-📍 ${location}
-💻 Skills: ${skills.join(', ')}
-🎯 Experience: ${candidate.yearsExperience} years
-⭐ Match Score: ${matchScorePercent}%`;
+        📧 ${candidate.email}
+        💼 ${candidate.currentTitle} at ${candidate.currentCompany}
+        📍 ${location}
+        💻 Skills: ${skills.join(', ')}
+        🎯 Experience: ${candidate.yearsExperience} years
+        ⭐ Match Score: ${matchScorePercent}%`;
     });
 
     return `Found ${candidates.length} matching candidates for: "${searchParams.query}"

@@ -143,17 +143,76 @@ export class EmbeddingService {
   private static extractTechnicalSkills(jobDescription: string): string[] {
     const skillPatterns = [
       // Programming languages
-      /\b(javascript|js|typescript|python|java|c#|c\+\+|ruby|php|go|rust|kotlin|swift)\b/gi,
-      // Frontend frameworks
-      /\b(react|angular|vue|svelte|ember|backbone)\b/gi,
+      /\b(javascript|js|typescript|ts|python|java|c#|c\+\+|cpp|c|ruby|php|go|golang|rust|kotlin|swift|scala|clojure|erlang|elixir|f#|haskell|perl|r|matlab|dart|objective-c|objc|assembly|cobol|fortran|julia|lua|bash|shell|powershell|vb\.net|visual basic)\b/gi,
+      
+      // Web technologies
+      /\b(html|html5|css|css3|sass|scss|less|tailwind|bootstrap|material-ui|mui|ant design|chakra ui|bulma|foundation|semantic ui)\b/gi,
+      
+      // Frontend frameworks and libraries
+      /\b(react|reactjs|angular|angularjs|vue|vuejs|svelte|ember|backbone|jquery|next\.js|nextjs|nuxt\.js|nuxtjs|gatsby|remix|astro|lit|alpine\.js|stimulus)\b/gi,
+      
       // Backend frameworks
-      /\b(node\.js|express|django|flask|spring|laravel|rails|asp\.net)\b/gi,
+      /\b(node\.js|nodejs|express|expressjs|django|flask|fastapi|spring|spring boot|laravel|rails|ruby on rails|asp\.net|nest\.js|nestjs|koa|hapi|gin|fiber|actix|rocket|sinatra|phoenix|symfony|codeigniter|cakephp|zend)\b/gi,
+      
       // Databases
-      /\b(sql|mysql|postgresql|mongodb|redis|elasticsearch|cassandra|dynamodb)\b/gi,
-      // Cloud and DevOps
-      /\b(aws|azure|gcp|docker|kubernetes|jenkins|terraform|ansible)\b/gi,
-      // Tools and methodologies
-      /\b(git|agile|scrum|rest|graphql|microservices|ci\/cd)\b/gi,
+      /\b(sql|mysql|postgresql|postgres|mongodb|mongo|redis|elasticsearch|elastic|cassandra|dynamodb|sqlite|oracle|sql server|mssql|mariadb|couchdb|neo4j|influxdb|timescaledb|snowflake|bigquery|firestore|supabase)\b/gi,
+      
+      // Cloud platforms and services
+      /\b(aws|amazon web services|azure|microsoft azure|gcp|google cloud|heroku|vercel|netlify|digitalocean|linode|vultr|cloudflare|firebase|amplify|serverless|lambda|ec2|s3|rds|aurora|cloudformation)\b/gi,
+      
+      // DevOps and Infrastructure
+      /\b(docker|kubernetes|k8s|jenkins|gitlab ci|github actions|travis ci|circleci|terraform|ansible|puppet|chef|vagrant|nginx|apache|prometheus|grafana|elk stack|datadog|new relic|splunk)\b/gi,
+      
+      // Mobile development
+      /\b(react native|flutter|ionic|xamarin|cordova|phonegap|native script|android|ios|swift ui|kotlin multiplatform|expo)\b/gi,
+      
+      // Testing frameworks and tools
+      /\b(jest|mocha|chai|jasmine|cypress|selenium|playwright|puppeteer|junit|pytest|rspec|minitest|phpunit|karma|protractor|cucumber|testng|mockito|sinon)\b/gi,
+      
+      // Build tools and bundlers
+      /\b(webpack|vite|parcel|rollup|esbuild|gulp|grunt|yarn|npm|pnpm|maven|gradle|sbt|leiningen|cargo|composer|pip|bundler|cocoapods|carthage)\b/gi,
+      
+      // Version control and collaboration
+      /\b(git|github|gitlab|bitbucket|svn|mercurial|perforce|jira|confluence|slack|teams|discord|notion|linear|asana|trello)\b/gi,
+      
+      // Methodologies and practices
+      /\b(agile|scrum|kanban|lean|waterfall|devops|ci\/cd|continuous integration|continuous deployment|tdd|test driven development|bdd|behavior driven development|pair programming|code review|microservices|monolith|serverless|jamstack)\b/gi,
+      
+      // API technologies
+      /\b(rest|restful|graphql|grpc|soap|webhooks|websockets|sse|server-sent events|json|xml|yaml|protobuf|openapi|swagger|postman|insomnia)\b/gi,
+      
+      // Data science and machine learning
+      /\b(pandas|numpy|scikit-learn|sklearn|tensorflow|keras|pytorch|jupyter|matplotlib|seaborn|plotly|tableau|power bi|spark|hadoop|kafka|airflow|dbt|snowflake|databricks)\b/gi,
+      
+      // Security
+      /\b(oauth|jwt|ssl|tls|https|encryption|hashing|authentication|authorization|csrf|xss|sql injection|penetration testing|owasp|security audit|firewall|vpn)\b/gi,
+      
+      // Monitoring and logging
+      /\b(prometheus|grafana|elk stack|elasticsearch|logstash|kibana|datadog|new relic|sentry|rollbar|bugsnag|pagerduty|splunk|fluentd|jaeger|zipkin)\b/gi,
+      
+      // Blockchain and web3
+      /\b(blockchain|ethereum|bitcoin|solidity|web3|smart contracts|nft|defi|metamask|truffle|hardhat|ganache|ipfs)\b/gi,
+      
+      // Game development
+      /\b(unity|unreal engine|godot|phaser|three\.js|babylonjs|webgl|opengl|directx|game maker|construct|defold)\b/gi,
+      
+      // Design and UX tools
+      /\b(figma|sketch|adobe xd|photoshop|illustrator|after effects|principle|framer|invision|zeplin|abstract|miro|whimsical)\b/gi,
+      
+      // Operating systems and platforms
+      /\b(linux|ubuntu|centos|debian|red hat|fedora|arch|windows|macos|unix|freebsd|android|ios|docker|containerization)\b/gi,
+      
+      // Specialized technologies
+      /\b(redis|memcached|rabbitmq|apache kafka|elasticsearch|solr|sphinx|lucene|opencv|tensorflow|pytorch|scikit-learn|r|stata|spss|sas|matlab|labview)\b/gi,
+      
+      // Architecture patterns
+      /\b(mvc|mvp|mvvm|clean architecture|hexagonal architecture|onion architecture|cqrs|event sourcing|domain driven design|ddd|solid principles|design patterns)\b/gi,
+      
+      // Performance and optimization
+      /\b(performance optimization|caching|cdn|load balancing|horizontal scaling|vertical scaling|database optimization|query optimization|indexing|compression)\b/gi,
+      
+      // Emerging technologies
+      /\b(ai|artificial intelligence|machine learning|ml|deep learning|neural networks|computer vision|natural language processing|nlp|iot|internet of things|ar|augmented reality|vr|virtual reality|quantum computing)\b/gi,
     ];
 
     const skills = new Set<string>();
